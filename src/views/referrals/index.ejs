@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ElderSource • Referrals</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <h1>Referrals Dashboard</h1>
+
+  <section class="stats">
+    <div>Total: <strong><%= stats.total %></strong></div>
+    <div>Open: <strong><%= stats.open %></strong></div>
+    <div>Pending: <strong><%= stats.pending %></strong></div>
+    <div>Closed: <strong><%= stats.closed %></strong></div>
+  </section>
+
+  <form method="GET" class="filters">
+    <label>Status:
+      <select name="status">
+        <option value="">All</option>
+        <option value="open"    <%= status==='open' ? 'selected' : '' %>>Open</option>
+        <option value="pending" <%= status==='pending' ? 'selected' : '' %>>Pending</option>
+        <option value="closed"  <%= status==='closed' ? 'selected' : '' %>>Closed</option>
+      </select>
+    </label>
+
+    <label>Search:
+      <input type="text" name="q" placeholder="Client / Caregiver / ID" value="<%= q %>" />
+    </label>
+
+    <label>Sort:
+      <select name="sort">
+        <option value="createdAt_desc" <%= sort==='createdAt_desc' ? 'selected' : '' %>>Newest</option>
+        <option value="createdAt_asc"  <%= sort==='createdAt_asc'  ? 'selected' : '' %>>Oldest</option>
+      </select>
+    </label>
+
+    <button type="submit">Apply</button>
+    <a class="reset" href="/referrals">Reset</a>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Client</th><th>Caregiver</th><th>Status</th><th>County</th><th>Service</th><th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (rows.length === 0) { %>
+        <tr><td colspan="7" style="text-align:center">No results</td></tr>
+      <% } %>
+      <% rows.forEach(r => { %>
+        <tr>
+          <td><%= r.id %></td>
+          <td><%= r.clientName %></td>
+          <td><%= r.caregiverName %></td>
+          <td><%= r.status %></td>
+          <td><%= r.county %></td>
+          <td><%= r.serviceType %></td>
+          <td><%= r.createdAt %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

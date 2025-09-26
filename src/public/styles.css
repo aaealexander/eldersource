@@ -1,0 +1,7 @@
+body { font-family: system-ui, Arial; margin: 24px; }
+h1 { margin-bottom: 8px; }
+.stats { display: flex; gap: 16px; margin: 8px 0 12px; }
+.filters { display: flex; gap: 12px; align-items: center; margin: 12px 0 16px; flex-wrap: wrap; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #ddd; padding: 8px; }
+.reset { margin-left: 8px; }
